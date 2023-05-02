@@ -1,0 +1,38 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+h3{
+    font-family: "Clicker Script";
+}
+
+body{
+    background-color: #f5ebc9;
+}
+
+.game {
+    width: 80%;
+    height: 500px;
+    border: 3px solid #bcbd50;
+    box-shadow: 0px 0px 15px #080034;
+    margin: auto;
+    background: url("placeholders/mika_fs.webp");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.textbox{
+    background-color: #080034;
+    color: #ffffff;
+    padding: 5px;
+    padding-left: 50px;
+    opacity: .8;
+}
