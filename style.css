@@ -8,9 +8,11 @@ h1, h2{
 }
 
 h3{
-    font-family: "Clicker Script";
+    font-family: "Clicker script";
 }
-
+p {
+    font-family: "Caveat";
+}
 body{
     background-color: #f5ebc9;
 }
