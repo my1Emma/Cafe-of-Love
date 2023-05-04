@@ -18,8 +18,8 @@ body{
 }
 
 .game {
-    width: 80%;
-    height: 500px;
+    width: 805px;
+    height: 506px;
     border: 3px solid #bcbd50;
     box-shadow: 0px 0px 15px #080034;
     margin: auto;
@@ -32,9 +32,20 @@ body{
 }
 
 .textbox{
+    border-radius: 70px;
     background-color: #080034;
     color: #ffffff;
     padding: 5px;
     padding-left: 50px;
     opacity: .8;
+    margin: 10px;
+}
+
+.textbox span{
+    margin-left: 400px;
+}
+
+a{
+    color: #ffffff;
+    text-decoration: none;
 }
