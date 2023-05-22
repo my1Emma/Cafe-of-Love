@@ -17,15 +17,18 @@ function lineChange(direction){
     back.style.visibility = "visible";
     forward.style.visibility = "visible";
   }
+  if (i == 0){
+    back.style.visibility = "hidden";
+  }
 }
-// Lists and Variables //
+// Lists Variables//
 let line = ["Ngahhh Oshi-san looks so pretty from this angle...", "I think he might just be da prettiest in da world!", "I hope that he's proud of us, of Valkyrie-- we've come so far..."];
-let i = 0
+let i = 0;
 let forward = document.getElementById("forward");
 let back = document.getElementById("back")
 let textArea = document.getElementById("script");
-
 textArea.innerHTML = line[i];
+back.style.visibility = "hidden";
 
 // Event Listeners //
 
