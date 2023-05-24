@@ -27,6 +27,7 @@ let i = 0;
 let forward = document.getElementById("forward");
 let back = document.getElementById("back")
 let textArea = document.getElementById("script");
+let gameArea = document.getElementById("game");
 textArea.innerHTML = line[i];
 back.style.visibility = "hidden";
 

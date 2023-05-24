@@ -19,19 +19,28 @@ body{
     background-color: #f5ebc9;
 }
 
-.game {
+#game {
     width: 805px;
     height: 506px;
     border: 3px solid #bcbd50;
     box-shadow: 0px 0px 15px #080034;
     margin: auto;
-    background: url("placeholders/mika_fs.webp");
-    background-position: center;
-    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     
+}
+
+.top{
+    z-index: 2;
+    position: relative;
+    top: 1000px;
+}
+
+.bottom{
+    z-index: 1;
+    object-fit: cover;
+    object-position: 15% 50%;
 }
 
 .textbox{
@@ -42,6 +51,7 @@ body{
     padding-left: 50px;
     opacity: .8;
     margin: 10px;
+    z-index: 3;
 }
 
 a{
@@ -72,4 +82,7 @@ button{
     background: none;
     border: none;
 
+}
+#forward:hover, #back:hover{
+    color: #ffffff;
 }
