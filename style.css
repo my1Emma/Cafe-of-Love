@@ -1,6 +1,7 @@
 html {
     height: 100%;
     width: 100%;
+    cursor: default;
 }
 
 h1, h2{
@@ -28,19 +29,18 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    
 }
 
 .top{
     z-index: 2;
-    position: relative;
-    top: 1000px;
 }
 
 .bottom{
     z-index: 1;
     object-fit: cover;
     object-position: 15% 50%;
+    position: relative;
+    top: 100px;
 }
 
 .textbox{
@@ -58,6 +58,22 @@ a{
     color: #ffffff;
     text-decoration: none;
 }
+.menu{
+    border: 1px solid #ffffff;
+}
+
+.settings-box, .dialogue-log-box{
+    background-color: #8b6b72;
+    border-radius: 50px;
+    border: 2px solid #726F78;
+    width: 4%;
+    display: inline-block;
+}
+
+.settings-box:hover, .dialogue-log-box:hover {
+    background-color: #ffffff;
+}
+
 
 .decision-box{
     /* border: 2px solid white; */
