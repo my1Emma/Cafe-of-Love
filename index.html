@@ -19,11 +19,19 @@
         <!-- <img src= "placeholders/mika_fs.webp" class= "top"> -->
         <section class = "menu">
             <div class = "settings-box">
-                <img src="icons/settings.svg">
+                <img src="icons/settings.svg" alt="Settings" id="settings">
             </div>
             <div class = "dialogue-log-box">
-                <img src="icons/script.svg">
+                <img src="icons/script.svg" alt="Dialogue Log" id="log">
             </div>
+            <button id="home"><img src="icons/home.svg" alt="Home"></button>
+        </section>
+        <section id="confirmation-box">
+            <h2>Warning</h2>
+            <hr>
+            <p id="confirmation-text">You are about to go to the Main Menu. <b>This means that all unsaved progress will not be able to be restored.</b><u><span>Are you sure you wish to continue?</span></u></p>
+            <button class="confirmation-button" id = "no">No</button>
+            <button class="confirmation-button" id = "yes">Yes</button>
         </section>
         <img src= "placeholders/koga_RS.webp" class= "bottom">
         <div class="textbox">

@@ -58,17 +58,50 @@ a{
     color: #ffffff;
     text-decoration: none;
 }
+span{
+    color:#ffffff;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+}
 .menu{
     border: 1px solid #ffffff;
+    background-color: white;
+    position: relative;
+    top: 400px;
+    z-index: 3;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+#confirmation-box{
+    position: relative;
+    top: 390px;
+    z-index: 5;
+    background-color: #080034;
+    width: 400px;
+    margin: auto;
+    padding: 10px;
+    color: #bcbd50;
+    visibility : hidden;
 }
 
-.settings-box, .dialogue-log-box{
+.confirmation-button{
+    width: 50px;
+    height: 30px;
+}
+.confirmation-button:hover{
+    background-color: #ffffff;
+}
+
+.settings-box, .dialogue-log-box, .home-box button{
     background-color: #8b6b72;
     border-radius: 50px;
     border: 2px solid #726F78;
-    width: 4%;
+    width: 4.5%;
     display: inline-block;
 }
+
 
 .settings-box:hover, .dialogue-log-box:hover {
     background-color: #ffffff;
