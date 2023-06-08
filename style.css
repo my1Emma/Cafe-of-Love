@@ -29,23 +29,28 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    background: url("placeholders/card_still_full1_3296_evolution.webp") center/cover;
 }
 
-.top{
-    z-index: 8;
+#top{
+    z-index: 2;
     object-fit: cover;
-    object-position: 15% 50%;
     position: relative;
-    top: 860px;
-    width: 805px;
-    height: 506px;
+    min-width: 100%;
+    min-height: 100%;
+    top: 650px;
+    opacity: 100%;
 }
-.bottom{
+#bottom{
     z-index: 1;
     object-fit: cover;
-    object-position: 15% 50%;
     position: relative;
-    top: 100px;
+    min-width: 100%;
+    min-height: 100%;
+    top: 144px;
+    opacity: 100%;
+    visibility: hidden;
+
 }
 
 .textbox{
@@ -73,7 +78,7 @@ span{
     border: 1px solid #ffffff;
     background: rgba(255,255,255, 0.6);
     position: relative;
-    top: 360px;
+    top: 908px;
     z-index: 3;
     display: flex;
     flex-direction: row;
@@ -82,7 +87,7 @@ span{
 }
 #confirmation-box{
     position: relative;
-    top: 390px;
+    top: 980px;
     z-index: 5;
     background-color: #080034;
     width: 400px;
@@ -142,3 +147,9 @@ button .choice, #forward, #back{
 #forward:hover, #back:hover{
     color: #ffffff;
 }
+
+.game_scene{
+    visibility: visible;
+    transition: opacity 1s;
+}
+
