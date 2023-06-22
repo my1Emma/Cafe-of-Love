@@ -9,6 +9,7 @@ h1, h2{
 }
 
 h3{
+
     font-family: "Clicker script";
 }
 p{
@@ -29,7 +30,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background: url("placeholders/card_still_full1_3296_evolution.webp") center/cover;
 }
 
 #top{
@@ -40,6 +40,7 @@ body{
     min-height: 100%;
     top: 650px;
     opacity: 100%;
+    visibility: hidden;
 }
 #bottom{
     z-index: 1;
@@ -53,6 +54,29 @@ body{
 
 }
 
+#bg{
+    z-index: 1;
+    object-fit: cover;
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+    top: 1156px;
+    position: relative;
+    opacity: 100%;
+}
+
+#sprite-left, #sprite-right{
+    z-index: 2;
+    position: relative;
+    top: 1665px;
+}
+
+#sprite-right{
+    left: 150px;
+}
+#sprite-left{
+    left: 50px;
+}
 .textbox{
     border-radius: 70px;
     background-color: #080034;
@@ -76,9 +100,13 @@ span{
 }
 .menu{
     border: 1px solid #ffffff;
+    border-left: none;
+    border-right: none;
+    border-top: none;
     background: rgba(255,255,255, 0.6);
     position: relative;
-    top: 908px;
+    /* measurement before adding bg top: 1395px; */
+    top: 1901px;
     z-index: 3;
     display: flex;
     flex-direction: row;
@@ -87,7 +115,9 @@ span{
 }
 #confirmation-box{
     position: relative;
-    top: 980px;
+    /* top: 1427px;  */
+    top: 1933px;
+    /* 908 */
     z-index: 5;
     background-color: #080034;
     width: 400px;
@@ -95,8 +125,35 @@ span{
     padding: 10px;
     color: #bcbd50;
     visibility : hidden;
-}
+    opacity: 0%;
+    transition: top .8s, opacity 1s;
 
+}
+#dialogue-history-box{
+    z-index: 6;
+    background-color: #080034;
+    position: relative;
+    top: 1840px;
+    max-height: 400px;
+    color: #ffffff;
+    min-width: 300px;
+    margin: auto;
+}
+#dialogue-history-box img{
+    position: relative;
+    margin: auto;
+}
+.back-bg{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    max-width: 30px;
+    float: right;
+    position: relative;
+    right: 5px;
+    top: 2px;
+}
 .confirmation-button{
     width: 50px;
     height: 30px;
@@ -150,6 +207,6 @@ button .choice, #forward, #back{
 
 .game_scene{
     visibility: visible;
-    transition: opacity 1s;
+    transition: opacity 2s;
 }
 

@@ -20,12 +20,34 @@ function lineChange(direction){
   if (i == 0){
     back.style.visibility = "hidden";
   }
+  dialogueHistory.innerHTML.push(line[i]);
 }
 function confirmation_box_display(activator){
   if (activator == "home"){
+    confirmationBox.style.top = "1965px";
+    // 980
+    confirmationBox.style.opacity = "100%"
     confirmationBox.style.visibility = "visible";
+    GAME_SCENE.forEach(element => {
+      element.style.filter = "blur(1.5px) grayscale(10%)";
+    });
+    forward.disabled = true;
+    back.disabled = true;
+
+
   } else if (activator == "no"){
-    confirmationBox.style.visibility = "hidden";
+    // Find a way to make box hidden afterwards.
+    confirmationBox.style.top = "1933px";
+    confirmationBox.style.opacity = "0%"
+    confirmationBox.addEventListener('transitionend', () =>{
+      confirmationBox.visibility = "hidden";
+    });
+    // 940
+    GAME_SCENE.forEach(element => {
+      element.style.filter = "none";
+    });
+    back.disabled = false;
+    forward.disabled = false;
   }
 }
 function main_menu(){
@@ -37,14 +59,9 @@ function main_menu(){
     thing.addEventListener('transitionend', () =>{
       thing.style.visibility = "hidden";
     });
-    // thing.style.visibility = "hidden";
   })
-  // GAME_SCENE.style.opacity = "0%";
+  gameArea.style.background = "url('placeholders/card_still_full1_3296_evolution.webp') center/cover";
   confirmationBox.style.visibility = "hidden";
-}
-
-function scene_hide(){
-  GAME_SCENE.style.visibility = "hidden";
 }
 // Lists Variables//
 let line = ["Ngahhh Oshi-san looks so pretty from this angle...", "I think he might just be da prettiest in da world!", "I hope that he's proud of us, of Valkyrie-- we've come so far..."];
@@ -57,8 +74,14 @@ let home = document.getElementById("home");
 let confirmationBox = document.getElementById("confirmation-box");
 let confimrationButtonNo = document.getElementById("no");
 let confirmationButtonYes = document.getElementById("yes")
+let background_image = document.getElementById("bg");
+let dialogueHistory = document.getElementById("dialogue-history");
+dialogueHistory.innerHTML = [];
 const TOP_CG = document.getElementById("top");
 const BOTTOM_CG = document.getElementById("bottom");
+const LEFT_SPRITE = document.getElementById("sprite_left");
+const RIGHT_SPRITE = document.getElementById("sprite-right");
+
 
 const GAME_SCENE = document.querySelectorAll(".game_scene");
 
@@ -85,3 +108,4 @@ confimrationButtonNo.addEventListener('click', function(){
 
 confirmationButtonYes.addEventListener('click', main_menu);
 
+sprite_fade()
