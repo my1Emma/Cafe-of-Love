@@ -3,7 +3,9 @@ html {
     width: 100%;
     cursor: default;
 }
-
+hr{
+    width: 100%;
+}
 h1, h2{
     text-align: center;
 }
@@ -30,6 +32,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    position: relative;
 }
 
 #top{
@@ -57,22 +60,21 @@ body{
 #bg{
     z-index: 1;
     object-fit: cover;
-    position: relative;
-    min-width: 100%;
+    max-width: 100%;
     min-height: 100%;
-    top: 1156px;
-    position: relative;
+    top: 0px;
+    position: absolute;
     opacity: 100%;
 }
 
 #sprite-left, #sprite-right{
     z-index: 2;
-    position: relative;
-    top: 1665px;
+    position: absolute;
+    bottom: 0px;
 }
 
 #sprite-right{
-    left: 150px;
+    right: 50px;
 }
 #sprite-left{
     left: 50px;
@@ -104,9 +106,11 @@ span{
     border-right: none;
     border-top: none;
     background: rgba(255,255,255, 0.6);
-    position: relative;
+    position: absolute;
     /* measurement before adding bg top: 1395px; */
-    top: 1901px;
+    /* top: 1901px; */
+    top: 0px;
+    width: 100%;
     z-index: 3;
     display: flex;
     flex-direction: row;
@@ -114,14 +118,15 @@ span{
     gap: 5px;
 }
 #confirmation-box{
-    position: relative;
+    position: absolute;
     /* top: 1427px;  */
-    top: 1933px;
+    top: 10%;
     /* 908 */
     z-index: 5;
     background-color: #080034;
     width: 400px;
     margin: auto;
+    left: 20%;
     padding: 10px;
     color: #bcbd50;
     visibility : hidden;
@@ -132,19 +137,30 @@ span{
 #dialogue-history-box{
     z-index: 6;
     background-color: #080034;
-    position: relative;
-    top: 1840px;
-    max-height: 400px;
+    position: absolute;
+    top: 8%;
+    left: 30%;
+    max-height: 320px;
+    min-height: 320px;
+    overflow: scroll;
     color: #ffffff;
     min-width: 300px;
+    max-width: 300px;
     margin: auto;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 8px;
+    visibility: hidden;
+    
 }
 #dialogue-history-box img{
     position: relative;
     margin: auto;
 }
 .back-bg{
-    background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -209,4 +225,79 @@ button .choice, #forward, #back{
     visibility: visible;
     transition: opacity 2s;
 }
+#main_menu_box{
+    background: #8b6b72;
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    /* Adjust z-index after perfecting style */
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: width 1.5s;
+}
+.main_menu_button{
+    position: relative;
+    top: 10%;
+    padding: 20px;
+    margin: 5px;
+    opacity: 0%;
+    transition: opacity 1s, transform 2s;
+}
 
+#chapter-box{
+    background: #080034;
+    width: 80%;
+    height: 40%;
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    margin: auto;
+    padding: 10px;
+    visibility: hidden;
+    opacity : 0%;
+    transition: opacity 1.5s;
+}
+
+#chapter1-box, #chapter2-box, #chapter3-box{
+    background: #ffffff;
+    width: 33%;
+    height: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+#chapter1-box:hover, #chapter2-box:hover, #chapter3-box:hover{
+    transition: transform .2s;
+    transform: scale(1.05);
+}
+
+#relationship-meter{
+    position: absolute;
+    background: #080034;
+    height: 70%;
+    width: 5%;
+    z-index: 8;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    right: 5%;
+    border-radius: 20px;
+    flex-wrap: wrap-reverse;
+    top: 20%;
+}
+#relationship-amt{
+    background:#8b6b72;
+    /* A full bar has a height of 95% */
+    height: 95%;
+    width: 50%;
+    margin: 10px;
+    border-radius: 20px;
+}

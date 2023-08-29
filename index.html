@@ -16,6 +16,22 @@
         <h2>A Web Fangame</h2>
     </header>
     <section id="game">
+        <section id="chapter-box">
+            <div id="chapter1-box">
+                <h3>Chapter 1</h3>
+            </div>
+            <div id="chapter2-box">
+                <h3>Chapter 2</h3>
+            </div>
+            <div id="chapter3-box">
+                <h3>Chapter 3</h3>
+            </div>
+        </section>
+        <div id = "main_menu_box">
+            <button id="chapter_select" class="main_menu_button">Chapter Select</button>
+            <button id="credits" class="main_menu_button">Credits</button>
+            <button id="settings" class="main_menu_button">Settings</button>
+        </div>
         <section class = "menu game_scene">
             <div class = "settings-box">
                 <img src="icons/settings.svg" alt="Settings" id="settings">
@@ -24,6 +40,9 @@
                 <img src="icons/script.svg" alt="Dialogue Log" id="log">
             </div>
             <button id="home"><img src="icons/home.svg" alt="Home"></button>
+        </section>
+        <section id = "relationship-meter">
+            <div id = "relationship-amt"></div>
         </section>
         <section id = "confirmation-box">
             <h2>Warning</h2>
@@ -34,7 +53,7 @@
         </section>
         <section id="dialogue-history-box" class = game_scene> 
             <div class= "back-bg">
-                <img src="icons/square-rounded-x-filled.svg">
+                <button id="exit"><img src="icons/square-rounded-x-filled.svg"></button>
             </div>
             <h2>Dialogue History</h2>
             <hr>
@@ -49,7 +68,7 @@
         <img src = "placeholders/koga_RS.webp" id= "bottom" class = "game_scene">
         <div class = "textbox game_scene">
             <h3>Mika</h3>
-          <button id="back"><<<</button>  <p id="script"></p><button id="forward">>>></button>
+            <p id="script"></p><button id="forward">>>></button>
         </div>
     </section>
     <audio controls>
