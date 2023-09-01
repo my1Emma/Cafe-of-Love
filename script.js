@@ -3,56 +3,48 @@ function lineChange(direction){
   if (direction == "forward"){
     i ++;
     textArea.innerHTML = line[i];
+    speakerArea.innerHTML = speaker[i];
     dialogue_history_add();
   } 
-  // else {
-  //   i --
-  //   textArea.innerHTML = line[i];
-  // }
   // If textArea[i] out of range, then one of the buttons will be hidden and not interactive // 
   if (i < 0 || i >= line.length){
     document.getElementById(direction).style.visibility = "hidden";
-    textArea.innerHTML = "No lines here!!"
+    textArea.innerHTML = "No lines here!!";
+    speakerArea.innerHTML = "Narrator";
   } 
   else { 
     // If textArea[i] in range, then the buttons are visible and interactive //
-    // back.style.visibility = "visible";
     forward.style.visibility = "visible";
   }
-  // if (i == 0){
-  //   back.style.visibility = "hidden";
-  //   dialogueHistory.innerHTML = line[i];
-  // }
+
   sprite_check();
 }
 function confirmation_box_display(activator){
   if (activator == "home"){
     confirmationBox.style.top = "20%";
-    // 980
     confirmationBox.style.opacity = "100%"
     confirmationBox.style.visibility = "visible";
     GAME_SCENE.forEach(element => {
       element.style.filter = "blur(1.5px) grayscale(10%)";
     });
     forward.disabled = true;
-    // back.disabled = true;
+    logButton.disabled = true;
+
     dialogueHistoryBox.style.visibility = "hidden";
 
 
 
   } else if (activator == "no"){
-    // Find a way to make box hidden afterwards.
     confirmationBox.style.top = "10%";
     confirmationBox.style.opacity = "0%"
     confirmationBox.addEventListener('transitionend', () =>{
       confirmationBox.visibility = "hidden";
     });
-    // 940
     GAME_SCENE.forEach(element => {
       element.style.filter = "none";
     });
-    // back.disabled = false;
     forward.disabled = false;
+    logButton.disabled = false;
   }
 }
 function main_menu(){
@@ -84,6 +76,14 @@ function sprite_check(){
 }
 function dialogue_history_add(){
   if (i < line.length){
+    // Add Speaker to Box
+
+    let speakerLine = document.createElement("h3");
+    let speakerLineNode = document.createTextNode(speaker[i]);
+    speakerLine.appendChild(speakerLineNode)
+    dialogueHistoryBox.appendChild(speakerLine);
+
+    // Add Dialogue to Box
     let logLine = document.createElement("p");
     let node = document.createTextNode(line[i]);
     logLine.appendChild(node);
@@ -91,10 +91,13 @@ function dialogue_history_add(){
   }
 }
 // Lists Variables //
+
 let line = ["Ngahhh Oshi-san looks so pretty from this angle...", "I think he might just be da prettiest in da world!", "I hope that he's proud of us, of Valkyrie-- we've come so far...", "Adding another line", "Yadaydayada"];
 let i = 0;
 let forward = document.getElementById("forward");
-// let back = document.getElementById("back");
+let speaker = ["Tsumugi", "Tsukasa", "Rei", "Arashi", "Shu"];
+let speakerArea = document.getElementById("speaker");
+let speakerHistory = document.getElementById("speaker-history");
 let textArea = document.getElementById("script");
 let gameArea = document.getElementById("game");
 let home = document.getElementById("home");
@@ -118,19 +121,18 @@ const chapterSelect = document.getElementById("chapter_select");
 const GAME_SCENE = document.querySelectorAll(".game_scene");
 const chapterSelectBox = document.getElementById('chapter-box');
 
+// Initialized Text
+
 textArea.innerHTML = line[i];
 dialogueHistory.innerHTML = line[i];
-// back.style.visibility = "hidden";
+speakerHistory.innerHTML = speaker[i];
+speakerArea.innerHTML = speaker[i];
 
 // Event Listeners //
 
 forward.addEventListener('click', function(){
   lineChange("forward");
 });
-
-// back.addEventListener('click', function(){
-//   lineChange("back");
-// });
 home.addEventListener('click', function(){
   confirmation_box_display('home');
 });

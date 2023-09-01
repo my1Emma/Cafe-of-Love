@@ -33,13 +33,10 @@
             <button id="settings" class="main_menu_button">Settings</button>
         </div>
         <section class = "menu game_scene">
-            <div class = "settings-box">
-                <img src="icons/settings.svg" alt="Settings" id="settings">
-            </div>
-            <div class = "dialogue-log-box">
-                <img src="icons/script.svg" alt="Dialogue Log" id="log">
-            </div>
-            <button id="home"><img src="icons/home.svg" alt="Home"></button>
+            <button id = "audio" class = "options"><img src="icons/headphones.svg" alt= "mute audio"></button>
+            <button id="settings" class = "options"><img src="icons/settings.svg" alt="Settings"></button>
+            <button id= "log" class = "options"><img src="icons/script.svg" alt="Dialogue Log"></button>
+            <button id="home" class = "options"><img src="icons/home.svg" alt="Home"></button>
         </section>
         <section id = "relationship-meter">
             <div id = "relationship-amt"></div>
@@ -52,11 +49,12 @@
             <button class="confirmation-button" id = "yes">Yes</button>
         </section>
         <section id="dialogue-history-box" class = game_scene> 
-            <div class= "back-bg">
+            <div class= "exit-bg">
                 <button id="exit"><img src="icons/square-rounded-x-filled.svg"></button>
             </div>
             <h2>Dialogue History</h2>
             <hr>
+            <h3 id= "speaker-history"></h3>
             <p id="dialogue-history"></p>
         </section>
         <div class = "sprites">
@@ -67,12 +65,12 @@
         <img src= "placeholders/mika_fs.webp" id= "top" class = "game_scene">
         <img src = "placeholders/koga_RS.webp" id= "bottom" class = "game_scene">
         <div class = "textbox game_scene">
-            <h3>Mika</h3>
+            <h3 id= "speaker"></h3>
             <p id="script"></p><button id="forward">>>></button>
         </div>
     </section>
     <audio controls>
-        <source src="music/Hep Cats.mp3" type="audio/mp3">
+        <source src="music/Smooth Lovin.mp3" type="audio/mp3">
     </audio>
 <script src="script.js"></script>
 </body>
