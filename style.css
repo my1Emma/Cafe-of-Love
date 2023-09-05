@@ -76,9 +76,9 @@ body{
 #sprite-right{
     right: 50px;
 }
-#sprite-left{
-    left: 50px;
-}
+/* #sprite-left{
+    left: 10px;
+} */
 .textbox{
     border-radius: 70px;
     background-color: #080034;
@@ -314,6 +314,7 @@ button .choice, #forward{
     border-radius: 20px;
     flex-wrap: wrap-reverse;
     top: 20%;
+    visibility: hidden;
 }
 #relationship-amt{
     background:#8b6b72;
