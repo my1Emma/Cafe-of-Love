@@ -2,12 +2,12 @@
 function lineChange(direction){
   if (direction == "forward"){
     i ++;
-    textArea.innerHTML = line[i];
-    speakerArea.innerHTML = speaker[i];
+    textArea.innerHTML = chapter.line[i];
+    speakerArea.innerHTML = chapter.speaker[i];
     dialogue_history_add();
   } 
   // If textArea[i] out of range, then one of the buttons will be hidden and not interactive // 
-  if (i < 0 || i >= line.length){
+  if (i < 0 || i >= chapter.line.length){
     document.getElementById(direction).style.visibility = "hidden";
     textArea.innerHTML = "No lines here!!";
     speakerArea.innerHTML = "Narrator";
@@ -90,8 +90,8 @@ function dialogue_history_add(){
     dialogueHistoryBox.appendChild(logLine);
   }
 }
-function loadChapter(chapter){
-  if (chapter == 1){
+function loadChapter(selection){
+  if (selection == 1){
     ch1.style.visibility = "hidden";
   }
 }
@@ -128,19 +128,23 @@ const chapterSelectBox = document.getElementById('chapter-box');
 const music = document.getElementById("audio");
 const ch1Box = document.getElementById("chapter1-box");
 const ch2Box = document.getElementById("chapter2-box");
-const ch3 = document.getElementById("chapter3-box");
+const ch3Box = document.getElementById("chapter3-box");
+
 
 const ch1 = {
   line : ["Hiii", "Oh my..."],
   speaker : ["Yuta", "Tsumugi"]
 };
 
+// variable chapter is here for testing purposes, value of chapter will depend on what chapter is selected on home screen.
+var chapter = ch1;
+
 // Initialized Text
 
-textArea.innerHTML = line[i];
+textArea.innerHTML = chapter.line[i];
 dialogueHistory.innerHTML = line[i];
 speakerHistory.innerHTML = speaker[i];
-speakerArea.innerHTML = speaker[i];
+speakerArea.innerHTML = chapter.speaker[i];
 
 // Event Listeners //
 
@@ -190,6 +194,7 @@ chapterSelect.addEventListener('click', function(){
   });
 });
 
-ch1.addEventListener('click', function(){
+ch1Box.addEventListener('click', function(){
+  // var chapter = 1
   loadChapter(1);
 });
