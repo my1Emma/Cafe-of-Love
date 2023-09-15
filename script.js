@@ -67,11 +67,11 @@ function main_menu(){
   });
 }
 function sprite_check(){
-  if (i < 1 || i >= 3 ){
-    RIGHT_SPRITE.src = "placeholders/tsukasa_sprite.png";
+  if (i >= 2){
+    RIGHT_SPRITE.src = "placeholders/sprites/koga/koga_munch.png";
   }
-  else if (i >= 1 || i < 3){
-    RIGHT_SPRITE.src = "placeholders/tsumugi_sprite.png";
+  else if (i >= 1 ){
+    RIGHT_SPRITE.src = "placeholders/sprites/tsukasa/tsukasa_neutral.png";
   }
 }
 function dialogue_history_add(){
@@ -90,12 +90,17 @@ function dialogue_history_add(){
     dialogueHistoryBox.appendChild(logLine);
   }
 }
+function loadChapter(chapter){
+  if (chapter == 1){
+    ch1.style.visibility = "hidden";
+  }
+}
 // Lists Variables //
 
-let line = ["Ngahhh Oshi-san looks so pretty from this angle...", "I think he might just be da prettiest in da world!", "I hope that he's proud of us, of Valkyrie-- we've come so far...", "Adding another line", "Yadaydayada"];
+let line = ["Say, Tsukasa, do you have any idea where the bread supply went?", "I'm not quite sure to be honest...", "mm...nomnom...munch..", "Adding another line", "Yadaydayada"];
 let i = 0;
 let forward = document.getElementById("forward");
-let speaker = ["Tsumugi", "Tsukasa", "Rei", "Arashi", "Shu"];
+let speaker = ["Tsumugi", "Tsukasa", "Koga", "Arashi", "Shu"];
 let speakerArea = document.getElementById("speaker");
 let speakerHistory = document.getElementById("speaker-history");
 let textArea = document.getElementById("script");
@@ -120,6 +125,15 @@ const mainMenuButtons = document.querySelectorAll(".main_menu_button");
 const chapterSelect = document.getElementById("chapter_select");
 const GAME_SCENE = document.querySelectorAll(".game_scene");
 const chapterSelectBox = document.getElementById('chapter-box');
+const music = document.getElementById("audio");
+const ch1Box = document.getElementById("chapter1-box");
+const ch2Box = document.getElementById("chapter2-box");
+const ch3 = document.getElementById("chapter3-box");
+
+const ch1 = {
+  line : ["Hiii", "Oh my..."],
+  speaker : ["Yuta", "Tsumugi"]
+};
 
 // Initialized Text
 
@@ -174,4 +188,8 @@ chapterSelect.addEventListener('click', function(){
       });
     });
   });
+});
+
+ch1.addEventListener('click', function(){
+  loadChapter(1);
 });
