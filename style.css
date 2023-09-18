@@ -24,6 +24,7 @@ body{
 }
 
 #game {
+    background: url(placeholders/card_still_full1_3296_evolution.webp) center/cover; /*Change Later*/
     width: 805px;
     height: 506px;
     border: 3px solid #bcbd50;
@@ -244,27 +245,28 @@ button .choice, #forward{
 }
 
 .game_scene{
-    visibility: visible;
+    visibility: hidden;
+    opacity: 0%;
     transition: opacity 2s;
 }
 #main_menu_box{
     background: #8b6b72;
     position: absolute;
-    width: 0%;
+    width: 20%;
     height: 100%;
     /* Adjust z-index after perfecting style */
     z-index: 8;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: width 1.5s;
+    transition: width 1s;
 }
 .main_menu_button{
     position: relative;
     top: 10%;
     padding: 20px;
     margin: 5px;
-    opacity: 0%;
+    opacity: 100%;
     transition: opacity 1s, transform 2s;
 }
 
@@ -283,7 +285,7 @@ button .choice, #forward{
     padding: 10px;
     visibility: hidden;
     opacity : 0%;
-    transition: opacity 1.5s;
+    transition: opacity 1s;
 }
 
 #chapter1-box, #chapter2-box, #chapter3-box{
@@ -321,6 +323,4 @@ button .choice, #forward{
     /* A full bar has a height of 95% */
     height: 95%;
     width: 50%;
-    margin: 10px;
-    border-radius: 20px;
 }

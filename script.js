@@ -55,14 +55,16 @@ function main_menu(){
     thing.style.opacity = "0%";
     thing.addEventListener('transitionend', () =>{
       thing.style.visibility = "hidden";
+    thing.style.filter = "none";
     });
   })
-  gameArea.style.background = "url('placeholders/card_still_full1_3296_evolution.webp') center/cover";
+  // gameArea.style.background = "url('placeholders/card_still_full1_3296_evolution.webp') center/cover";
   confirmationBox.style.visibility = "hidden";
   mainMenuBox.style.width = "20%";
   mainMenuBox.addEventListener('transitionend', () =>{
     mainMenuButtons.forEach(button => {
       button.style.opacity =  "100%";
+      button.style.visibility = "visible";
     });
   });
 }
@@ -91,9 +93,47 @@ function dialogue_history_add(){
   }
 }
 function loadChapter(selection){
-  if (selection == 1){
-    ch1.style.visibility = "hidden";
+  switch (selection) {
+    case 1:
+      chapter = ch1;
+      break;
+    case 2:
+      chapter = ch2;
+      break;
+    case 3:
+      chapter = ch3;
+      break;
   }
+  chapterSelectBox.style.opacity = "0%";
+  chapterSelectBox.addEventListener('transitionend', ()=>{
+    chapterSelectBox.style.visibility = "hidden";
+    textArea.innerHTML = chapter.line[i];
+  speakerArea.innerHTML = chapter.speaker[i];
+  GAME_SCENE.forEach(element => {
+    if (element == GAME_SCENE[1] || element == GAME_SCENE[5] || element == GAME_SCENE[6] ){
+      element.style.opacity = "100%";
+      return;
+    }
+    element.style.visibility = "visible";
+    element.style.opacity = "100%";
+    
+    // element.addEventListener('transitionend', ()=>{
+    //   element.style.opacity = "100%";
+    // });
+  });
+  // });
+  // textArea.innerHTML = chapter.line[i];
+  // speakerArea.innerHTML = chapter.speaker[i];
+  // GAME_SCENE.forEach(element => {
+  //   element.style.visibility = "visible";
+  //   element.style.opacity = "100%";
+    
+  //   // element.addEventListener('transitionend', ()=>{
+  //   //   element.style.opacity = "100%";
+  //   // });
+  // });
+
+});
 }
 // Lists Variables //
 
@@ -113,6 +153,7 @@ let background_image = document.getElementById("bg");
 let dialogueHistory = document.getElementById("dialogue-history");
 let dialogueHistoryBox = document.getElementById("dialogue-history-box");
 let logButton = document.getElementById("log");
+var chapter;
 const dialogueHistoryExit = document.getElementById("exit");
 dialogueHistory.innerHTML = [];
 const TOP_CG = document.getElementById("top");
@@ -136,16 +177,22 @@ const ch1 = {
   speaker : ["Yuta", "Tsumugi"]
 };
 
-// variable chapter is here for testing purposes, value of chapter will depend on what chapter is selected on home screen.
-var chapter = ch1;
+const ch2 = {
+  line: ["This is chapter 2 lol", "Please work..."],
+  speaker: ["Tsukasa", "Koga"]
+};
+const ch3 = {
+  line: ["This is chapter 3 lol", "Please work..."],
+  speaker: ["Mama", "Hinata"]
+};
+
 
 // Initialized Text
 
-textArea.innerHTML = chapter.line[i];
+// textArea.innerHTML = chapter.line[i];
 dialogueHistory.innerHTML = line[i];
-speakerHistory.innerHTML = speaker[i];
-speakerArea.innerHTML = chapter.speaker[i];
-
+// speakerHistory.innerHTML = speaker[i];
+// speakerArea.innerHTML = chapter.speaker[i];
 // Event Listeners //
 
 forward.addEventListener('click', function(){
@@ -180,6 +227,7 @@ credits.addEventListener('click', function(){
  
   gameArea.style.background = "#000000";
 });
+
 chapterSelect.addEventListener('click', function(){
   mainMenuButtons.forEach (button =>{
     button.style.opacity = "0%";
@@ -195,6 +243,11 @@ chapterSelect.addEventListener('click', function(){
 });
 
 ch1Box.addEventListener('click', function(){
-  // var chapter = 1
   loadChapter(1);
+});
+ch2Box.addEventListener('click', function(){
+  loadChapter(2);
+});
+ch3Box.addEventListener('click', function(){
+  loadChapter(3);
 });
