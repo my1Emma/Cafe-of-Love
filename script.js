@@ -7,7 +7,7 @@ function lineChange(direction){
     dialogue_history_add();
   } 
   // If textArea[i] out of range, then one of the buttons will be hidden and not interactive // 
-  if (i < 0 || i >= chapter.line.length){
+  if (i >= chapter.line.length){
     document.getElementById(direction).style.visibility = "hidden";
     textArea.innerHTML = "No lines here!!";
     speakerArea.innerHTML = "Narrator";
@@ -48,25 +48,29 @@ function confirmation_box_display(activator){
   }
 }
 function main_menu(){
+  chapter = null;
+  i = 0;
   // GAME_SCENE is a list of all the game_scene elements
   // loop through each element in the list and apply the 
   // style properties that you want
+  
   GAME_SCENE.forEach(thing => {
     thing.style.opacity = "0%";
-    thing.addEventListener('transitionend', () =>{
-      thing.style.visibility = "hidden";
+    // thing.addEventListener('transitionend', () =>{
+    thing.style.visibility = "hidden";
     thing.style.filter = "none";
-    });
+    // });
   })
   // gameArea.style.background = "url('placeholders/card_still_full1_3296_evolution.webp') center/cover";
   confirmationBox.style.visibility = "hidden";
   mainMenuBox.style.width = "20%";
-  mainMenuBox.addEventListener('transitionend', () =>{
-    mainMenuButtons.forEach(button => {
-      button.style.opacity =  "100%";
-      button.style.visibility = "visible";
-    });
+  // mainMenuBox.addEventListener('transitionend', () =>{
+  mainMenuButtons.forEach(button => {
+  button.style.opacity =  "100%";
+  button.style.visibility = "visible";
+    // });
   });
+  
 }
 function sprite_check(){
   if (i >= 2){
@@ -105,9 +109,11 @@ function loadChapter(selection){
       break;
   }
   chapterSelectBox.style.opacity = "0%";
-  chapterSelectBox.addEventListener('transitionend', ()=>{
-    chapterSelectBox.style.visibility = "hidden";
-    textArea.innerHTML = chapter.line[i];
+  // chapterSelectBox.addEventListener('transitionend', ()=>{
+  chapterSelectBox.style.visibility = "hidden";
+  forward.disabled = false;
+  textArea.innerHTML = chapter.line[i];
+  // });
   speakerArea.innerHTML = chapter.speaker[i];
   GAME_SCENE.forEach(element => {
     if (element == GAME_SCENE[1] || element == GAME_SCENE[5] || element == GAME_SCENE[6] ){
@@ -133,7 +139,6 @@ function loadChapter(selection){
   //   // });
   // });
 
-});
 }
 // Lists Variables //
 
@@ -219,10 +224,10 @@ logButton.addEventListener('click', function(){
 credits.addEventListener('click', function(){
   mainMenuButtons.forEach (button =>{
     button.style.opacity = "0%";
-    button.addEventListener('transitionend', ()=>{
-      mainMenuBox.style.width = "0%";
-      button.style.visibility = "hidden";
-    });
+    // button.addEventListener('transitionend', ()=>{
+    mainMenuBox.style.width = "0%";
+    button.style.visibility = "hidden";
+    // });
   })
  
   gameArea.style.background = "#000000";
@@ -231,14 +236,14 @@ credits.addEventListener('click', function(){
 chapterSelect.addEventListener('click', function(){
   mainMenuButtons.forEach (button =>{
     button.style.opacity = "0%";
-    button.addEventListener('transitionend', ()=>{
+    // button.addEventListener('transitionend', ()=>{
       mainMenuBox.style.width = "0px";
-      button.style.visibility = "hidden";
-      mainMenuBox.addEventListener('transitionend', ()=>{
-        chapterSelectBox.style.opacity = "100%";
-        chapterSelectBox.style.visibility = "visible";
-      });
-    });
+    button.style.visibility = "hidden";
+      // mainMenuBox.addEventListener('transitionend', ()=>{
+    chapterSelectBox.style.opacity = "100%";
+    chapterSelectBox.style.visibility = "visible";
+      // });
+    // });
   });
 });
 
