@@ -50,6 +50,7 @@ function confirmation_box_display(activator){
 function main_menu(){
   chapter = null;
   i = 0;
+  
   // GAME_SCENE is a list of all the game_scene elements
   // loop through each element in the list and apply the 
   // style properties that you want
@@ -85,13 +86,13 @@ function dialogue_history_add(){
     // Add Speaker to Box
 
     let speakerLine = document.createElement("h3");
-    let speakerLineNode = document.createTextNode(speaker[i]);
+    let speakerLineNode = document.createTextNode(chapter.speaker[i]);
     speakerLine.appendChild(speakerLineNode)
     dialogueHistoryBox.appendChild(speakerLine);
 
     // Add Dialogue to Box
     let logLine = document.createElement("p");
-    let node = document.createTextNode(line[i]);
+    let node = document.createTextNode(chapter.line[i]);
     logLine.appendChild(node);
     dialogueHistoryBox.appendChild(logLine);
   }
@@ -115,6 +116,8 @@ function loadChapter(selection){
   textArea.innerHTML = chapter.line[i];
   // });
   speakerArea.innerHTML = chapter.speaker[i];
+  dialogueHistory.innerHTML = chapter.line[i];
+  speakerHistory.innerHTML = chapter.speaker[i];
   GAME_SCENE.forEach(element => {
     if (element == GAME_SCENE[1] || element == GAME_SCENE[5] || element == GAME_SCENE[6] ){
       element.style.opacity = "100%";
@@ -122,6 +125,7 @@ function loadChapter(selection){
     }
     element.style.visibility = "visible";
     element.style.opacity = "100%";
+    forward.style.visibility = "visible";
     
     // element.addEventListener('transitionend', ()=>{
     //   element.style.opacity = "100%";
@@ -195,8 +199,6 @@ const ch3 = {
 // Initialized Text
 
 // textArea.innerHTML = chapter.line[i];
-dialogueHistory.innerHTML = line[i];
-// speakerHistory.innerHTML = speaker[i];
 // speakerArea.innerHTML = chapter.speaker[i];
 // Event Listeners //
 
