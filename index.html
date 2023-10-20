@@ -30,7 +30,7 @@
         <div id = "main_menu_box">
             <button id="chapter_select" class="main_menu_button">Chapter Select</button>
             <button id="credits" class="main_menu_button">Credits</button>
-            <button id="settings" class="main_menu_button">Settings</button>
+            <button id="settings-mm" class="main_menu_button">Settings</button>
         </div>
         <section class = "menu game_scene">
             <button id = "audio" class = "options"><img src="icons/headphones.svg" alt= "mute audio"></button>
@@ -56,6 +56,10 @@
             <hr>
             <h3 id= "speaker-history"></h3>
             <p id="dialogue-history"></p>
+        </section>
+        <section id = "settings-box" class = game_scene>
+            <h3>Text speed: </h3>
+            <input type="range" min = "100" max = "600" value = "300">
         </section>
         <div class = "sprites">
         <img src= "placeholders/sprites/tsumugi/tsumugi_confused.png" id = "sprite-left" class = "game_scene" width = "470px">

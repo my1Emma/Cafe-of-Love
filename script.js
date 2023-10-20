@@ -136,7 +136,7 @@ function loadChapter(selection){
   dialogueHistory.innerHTML = chapter.line[i];
   speakerHistory.innerHTML = chapter.speaker[i];
   GAME_SCENE.forEach(element => {
-    if (element == GAME_SCENE[1] || element == GAME_SCENE[5] || element == GAME_SCENE[6] ){
+    if (element == GAME_SCENE[1] || element == GAME_SCENE[6] || element == GAME_SCENE[7] ){
       element.style.opacity = "100%";
       return;
     }
@@ -179,6 +179,8 @@ let confirmationButtonYes = document.getElementById("yes")
 let background_image = document.getElementById("bg");
 let dialogueHistory = document.getElementById("dialogue-history");
 let dialogueHistoryBox = document.getElementById("dialogue-history-box");
+let settings = document.getElementById("settings");
+let settingsBox = document.getElementById("settings-box");
 let logButton = document.getElementById("log");
 let dialogueSpeed = 300;
 let txtChar = 0;
@@ -261,6 +263,10 @@ chapterSelect.addEventListener('click', function(){
       // });
     // });
   });
+});
+
+settings.addEventListener('click', function(){
+  settingsBox.style.visibility = "visible";
 });
 
 ch1Box.addEventListener('click', function(){

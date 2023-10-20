@@ -136,6 +136,21 @@ span{
 
 }
 
+#settings-box{
+    display: flex;
+    flex-direction: row;
+    color: #ffffff;
+    background: #080034;
+    z-index: 7;
+    height: 50%;
+    width: 50%;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    /* visibility: hidden; */
+
+}
+
 /* Dialogue History */
 
 #dialogue-history-box{
@@ -269,6 +284,7 @@ button .choice, #forward{
     opacity: 100%;
     transition: opacity 1s, transform 2s;
 }
+
 
 #chapter-box{
     background: #080034;
