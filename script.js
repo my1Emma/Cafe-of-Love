@@ -1,23 +1,37 @@
 // functions //
 function lineChange(direction){
   if (direction == "forward"){
-    i ++;
-    textArea.innerHTML = chapter.line[i];
+    txtChar = 0;
+    i++;
+    textArea.innerHTML = "";
     speakerArea.innerHTML = chapter.speaker[i];
+    // textArea.innerHTML = chapter.line[i];
+    if (i < chapter.line.length){
+      textDisplay();
+    }
+    
     dialogue_history_add();
   } 
-  // If textArea[i] out of range, then one of the buttons will be hidden and not interactive // 
+  // If textArea[i] out of range, then player cannot advance // 
   if (i >= chapter.line.length){
     document.getElementById(direction).style.visibility = "hidden";
     textArea.innerHTML = "No lines here!!";
     speakerArea.innerHTML = "Narrator";
   } 
   else { 
-    // If textArea[i] in range, then the buttons are visible and interactive //
+    // If textArea[i] in range, then player can advance //
     forward.style.visibility = "visible";
   }
 
   sprite_check();
+}
+function textDisplay(){
+  // Typewriter-like animation
+  if (txtChar < chapter["line"][i].length){
+    textArea.innerHTML += chapter["line"][i].charAt(txtChar);
+    txtChar++;
+    setInterval(textDisplay, dialogueSpeed);
+  }
 }
 function confirmation_box_display(activator){
   if (activator == "home"){
@@ -71,9 +85,10 @@ function main_menu(){
   button.style.visibility = "visible";
     // });
   });
-  
+  textArea.innerHTML = "";
 }
 function sprite_check(){
+  // Sprite changes
   if (i >= 2){
     RIGHT_SPRITE.src = "placeholders/sprites/koga/koga_munch.png";
   }
@@ -82,6 +97,7 @@ function sprite_check(){
   }
 }
 function dialogue_history_add(){
+  // Appending current line and speaker to Dialogue History
   if (i < line.length){
     // Add Speaker to Box
 
@@ -98,6 +114,8 @@ function dialogue_history_add(){
   }
 }
 function loadChapter(selection){
+  // Resetting the Line Index
+  txtChar = 0;
   switch (selection) {
     case 1:
       chapter = ch1;
@@ -113,7 +131,6 @@ function loadChapter(selection){
   // chapterSelectBox.addEventListener('transitionend', ()=>{
   chapterSelectBox.style.visibility = "hidden";
   forward.disabled = false;
-  textArea.innerHTML = chapter.line[i];
   // });
   speakerArea.innerHTML = chapter.speaker[i];
   dialogueHistory.innerHTML = chapter.line[i];
@@ -131,6 +148,7 @@ function loadChapter(selection){
     //   element.style.opacity = "100%";
     // });
   });
+  textDisplay();
   // });
   // textArea.innerHTML = chapter.line[i];
   // speakerArea.innerHTML = chapter.speaker[i];
@@ -144,7 +162,7 @@ function loadChapter(selection){
   // });
 
 }
-// Lists Variables //
+// Lists, Variables //
 
 let line = ["Say, Tsukasa, do you have any idea where the bread supply went?", "I'm not quite sure to be honest...", "mm...nomnom...munch..", "Adding another line", "Yadaydayada"];
 let i = 0;
@@ -162,6 +180,8 @@ let background_image = document.getElementById("bg");
 let dialogueHistory = document.getElementById("dialogue-history");
 let dialogueHistoryBox = document.getElementById("dialogue-history-box");
 let logButton = document.getElementById("log");
+let dialogueSpeed = 300;
+let txtChar = 0;
 var chapter;
 const dialogueHistoryExit = document.getElementById("exit");
 dialogueHistory.innerHTML = [];
@@ -182,8 +202,8 @@ const ch3Box = document.getElementById("chapter3-box");
 
 
 const ch1 = {
-  line : ["Hiii", "Oh my..."],
-  speaker : ["Yuta", "Tsumugi"]
+  line : ["Hiii", "Oh my...", "Lalaalalala", "More lines", "Wow this is sooo satisfying!"],
+  speaker : ["Yuta", "Tsumugi", "Tsumugi", "Tsumugi", "Tsumugi"]
 };
 
 const ch2 = {
@@ -195,12 +215,6 @@ const ch3 = {
   speaker: ["Mama", "Hinata"]
 };
 
-
-// Initialized Text
-
-// textArea.innerHTML = chapter.line[i];
-// speakerArea.innerHTML = chapter.speaker[i];
-// Event Listeners //
 
 forward.addEventListener('click', function(){
   lineChange("forward");
