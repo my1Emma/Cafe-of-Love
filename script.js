@@ -45,6 +45,7 @@ function confirmation_box_display(activator){
     logButton.disabled = true;
 
     dialogueHistoryBox.style.visibility = "hidden";
+    settingsBox.style.visibility = "hidden";
 
 
 
@@ -136,7 +137,7 @@ function loadChapter(selection){
   dialogueHistory.innerHTML = chapter.line[i];
   speakerHistory.innerHTML = chapter.speaker[i];
   GAME_SCENE.forEach(element => {
-    if (element == GAME_SCENE[1] || element == GAME_SCENE[6] || element == GAME_SCENE[7] ){
+    if (element == GAME_SCENE[1] || element == GAME_SCENE[6] || element == GAME_SCENE[7]|| element == GAME_SCENE[2] ){
       element.style.opacity = "100%";
       return;
     }
@@ -148,6 +149,7 @@ function loadChapter(selection){
     //   element.style.opacity = "100%";
     // });
   });
+  logButton.disabled = false;
   textDisplay();
   // });
   // textArea.innerHTML = chapter.line[i];

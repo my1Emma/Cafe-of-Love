@@ -58,8 +58,32 @@
             <p id="dialogue-history"></p>
         </section>
         <section id = "settings-box" class = game_scene>
-            <h3>Text speed: </h3>
-            <input type="range" min = "100" max = "600" value = "300">
+            <button class = "exit"><img src= "icons/square-rounded-x-filled.svg"></button>
+            <div class = "speed-adjust">
+                <h3>Text</h3>
+                <label for = "text-speed">Text Speed
+                <input type="range" min = "100" max = "300" value = "100" id="text-speed">
+                </label>
+            </div>
+            <div id = "font-adjust">
+                <label for = "font-change">
+                    Readable Font
+                <input type="checkbox">
+                </label>
+            </div>
+            <p>Text will appear as such!</p>
+             <hr>
+            <div id = "audio-adjust">
+                <h3>Audio Control</h3>
+                <label for = "audio-slider">
+                    Music Volume
+                    <input type = "range" min = "0" max = "100">
+                </label>
+                <label for = "audio-mute">
+
+                </label>
+                
+            </div>
         </section>
         <div class = "sprites">
         <img src= "placeholders/sprites/tsumugi/tsumugi_confused.png" id = "sprite-left" class = "game_scene" width = "470px">
