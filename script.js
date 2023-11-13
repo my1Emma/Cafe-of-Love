@@ -186,6 +186,8 @@ let settingsBox = document.getElementById("settings-box");
 let logButton = document.getElementById("log");
 let dialogueSpeed = 300;
 let txtChar = 0;
+let fontChange = document.getElementById("legible-font");
+let speedSlider = document.getElementById("text-speed");
 var chapter;
 const dialogueHistoryExit = document.getElementById("exit");
 dialogueHistory.innerHTML = [];
@@ -219,7 +221,14 @@ const ch3 = {
   speaker: ["Mama", "Hinata"]
 };
 
+speedSlider.addEventListener("input", function(){
+  dialogueSpeed = speedSlider.value;
+});
 
+fontChange.addEventListener("change", function(){
+  textArea.style.fontFamily = "Arial";
+  speakerArea.style.fontFamily = "Arial";
+});
 forward.addEventListener('click', function(){
   lineChange("forward");
 });
