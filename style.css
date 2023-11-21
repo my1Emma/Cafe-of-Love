@@ -349,3 +349,8 @@ button .choice, #forward{
     height: 95%;
     width: 50%;
 }
+
+#debug{
+    background-color: #000;
+    color: #fff;
+}

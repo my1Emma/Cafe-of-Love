@@ -6,9 +6,9 @@ function lineChange(direction){
     textArea.innerHTML = "";
     speakerArea.innerHTML = chapter.speaker[i];
     // textArea.innerHTML = chapter.line[i];
-    if (i < chapter.line.length){
-      textDisplay();
-    }
+    // if (i < chapter.line.length){
+    //   textDisplay();
+    // }
     
     dialogue_history_add();
   } 
@@ -27,7 +27,7 @@ function lineChange(direction){
 }
 function textDisplay(){
   // Typewriter-like animation
-  if (txtChar < chapter["line"][i].length){
+  if (txtChar < chapter.line[i].length){
     textArea.innerHTML += chapter["line"][i].charAt(txtChar);
     txtChar++;
     setInterval(textDisplay, dialogueSpeed);
@@ -65,6 +65,7 @@ function confirmation_box_display(activator){
 function main_menu(){
   chapter = null;
   i = 0;
+  lines, name = [];
   
   // GAME_SCENE is a list of all the game_scene elements
   // loop through each element in the list and apply the 
@@ -99,7 +100,7 @@ function sprite_check(){
 }
 function dialogue_history_add(){
   // Appending current line and speaker to Dialogue History
-  if (i < line.length){
+  if (i < chapter.line.length){
     // Add Speaker to Box
 
     let speakerLine = document.createElement("h3");
@@ -127,7 +128,22 @@ function loadChapter(selection){
     case 3:
       chapter = ch3;
       break;
+  
+  
+  
   }
+  fetch('ch1_script.txt')
+  .then(response => response.text())
+  .then(text => {
+    debugText.innerHTML = text;
+    fullScript = (text.split("\n"));
+    for (let i = 0; i < fullScript.length; i++){
+      lines.push(fullScript[i].split(":")[1]);
+      names.push(fullScript[i].split(":")[0]);
+    }
+    ch1.line = lines;
+    ch1.speaker = names;
+  });
   chapterSelectBox.style.opacity = "0%";
   // chapterSelectBox.addEventListener('transitionend', ()=>{
   chapterSelectBox.style.visibility = "hidden";
@@ -166,7 +182,6 @@ function loadChapter(selection){
 }
 // Lists, Variables //
 
-let line = ["Say, Tsukasa, do you have any idea where the bread supply went?", "I'm not quite sure to be honest...", "mm...nomnom...munch..", "Adding another line", "Yadaydayada"];
 let i = 0;
 let forward = document.getElementById("forward");
 let speaker = ["Tsumugi", "Tsukasa", "Koga", "Arashi", "Shu"];
@@ -184,10 +199,13 @@ let dialogueHistoryBox = document.getElementById("dialogue-history-box");
 let settings = document.getElementById("settings");
 let settingsBox = document.getElementById("settings-box");
 let logButton = document.getElementById("log");
-let dialogueSpeed = 300;
+let dialogueSpeed = 450;
 let txtChar = 0;
 let fontChange = document.getElementById("legible-font");
 let speedSlider = document.getElementById("text-speed");
+let lines = [];
+let names = [];
+let fullScript = [];
 var chapter;
 const dialogueHistoryExit = document.getElementById("exit");
 dialogueHistory.innerHTML = [];
@@ -206,19 +224,56 @@ const ch1Box = document.getElementById("chapter1-box");
 const ch2Box = document.getElementById("chapter2-box");
 const ch3Box = document.getElementById("chapter3-box");
 
+// debug //
+
+let debugText = document.getElementById("debug-text");
+
+//
+
+// function textRead(){
+//   fetch("ch1_script.txt")
+//     .then(response => response.text())
+//     .then(text => {
+//       let fullScript = text.split("\n");
+//       let lines = [];
+//       let names = [];
+//       // for (let i = 0; i < fullScript.length; i++){
+//       //   if (i % 2 == 0){
+//       //     lines.push(fullScript[i]);
+//       //   }else{
+//       //     names.push(fullScript[i]);
+//       //   }
+//       // }
+//       lines.push("HIII");
+//       return lines;
+//     })
+// }
+
+
+
+// async function loadText(){
+//   window.alert("Debugging is hard...");
+//   const response = await fetch("ch1_script.txt");
+//   const text = await response.text();
+//   debugText.innerHTML = "blah";
+// }
+
+// loadText();
+
+
 
 const ch1 = {
-  line : ["Hiii", "Oh my...", "Lalaalalala", "More lines", "Wow this is sooo satisfying!"],
-  speaker : ["Yuta", "Tsumugi", "Tsumugi", "Tsumugi", "Tsumugi"]
+  line : [],
+  speaker : []
 };
 
 const ch2 = {
-  line: ["This is chapter 2 lol", "Please work..."],
-  speaker: ["Tsukasa", "Koga"]
+  line: lines,
+  speaker: names
 };
 const ch3 = {
-  line: ["This is chapter 3 lol", "Please work..."],
-  speaker: ["Mama", "Hinata"]
+  line: lines,
+  speaker: names
 };
 
 speedSlider.addEventListener("input", function(){
@@ -289,3 +344,4 @@ ch2Box.addEventListener('click', function(){
 ch3Box.addEventListener('click', function(){
   loadChapter(3);
 });
+
