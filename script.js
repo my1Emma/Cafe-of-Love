@@ -1,11 +1,10 @@
 // functions //
 function lineChange(direction){
   if (direction == "forward"){
-    txtChar = 0;
     i++;
     textArea.innerHTML = "";
     speakerArea.innerHTML = chapter.speaker[i];
-    // textArea.innerHTML = chapter.line[i];
+    textArea.innerHTML = chapter.line[i];
     // if (i < chapter.line.length){
     //   textDisplay();
     // }
@@ -25,14 +24,14 @@ function lineChange(direction){
 
   sprite_check();
 }
-function textDisplay(){
-  // Typewriter-like animation
-  if (txtChar < chapter.line[i].length){
-    textArea.innerHTML += chapter["line"][i].charAt(txtChar);
-    txtChar++;
-    setInterval(textDisplay, dialogueSpeed);
-  }
-}
+// function textDisplay(){
+//   // Typewriter-like animation
+//   if (txtChar < chapter.line[i].length){
+//     textArea.innerHTML += chapter["line"][i].charAt(txtChar);
+//     txtChar++;
+//     setInterval(textDisplay, dialogueSpeed);
+//   }
+// }
 function confirmation_box_display(activator){
   if (activator == "home"){
     confirmationBox.style.top = "20%";
@@ -65,7 +64,8 @@ function confirmation_box_display(activator){
 function main_menu(){
   chapter = null;
   i = 0;
-  lines, name = [];
+  lines = [];
+  names = [];
   
   // GAME_SCENE is a list of all the game_scene elements
   // loop through each element in the list and apply the 
@@ -117,7 +117,6 @@ function dialogue_history_add(){
 }
 function loadChapter(selection){
   // Resetting the Line Index
-  txtChar = 0;
   switch (selection) {
     case 1:
       chapter = ch1;
@@ -128,15 +127,12 @@ function loadChapter(selection){
     case 3:
       chapter = ch3;
       break;
-  
-  
-  
   }
   fetch('ch1_script.txt')
   .then(response => response.text())
   .then(text => {
-    debugText.innerHTML = text;
     fullScript = (text.split("\n"));
+    debugText.innerHTML = fullScript;
     for (let i = 0; i < fullScript.length; i++){
       lines.push(fullScript[i].split(":")[1]);
       names.push(fullScript[i].split(":")[0]);
@@ -149,9 +145,12 @@ function loadChapter(selection){
   chapterSelectBox.style.visibility = "hidden";
   forward.disabled = false;
   // });
+  textArea.innerHTML = chapter.line[i];
   speakerArea.innerHTML = chapter.speaker[i];
   dialogueHistory.innerHTML = chapter.line[i];
   speakerHistory.innerHTML = chapter.speaker[i];
+  console.log(lines);
+  console.log(chapter.line);
   GAME_SCENE.forEach(element => {
     if (element == GAME_SCENE[1] || element == GAME_SCENE[6] || element == GAME_SCENE[7]|| element == GAME_SCENE[2] ){
       element.style.opacity = "100%";
@@ -166,7 +165,7 @@ function loadChapter(selection){
     // });
   });
   logButton.disabled = false;
-  textDisplay();
+  // textDisplay();
   // });
   // textArea.innerHTML = chapter.line[i];
   // speakerArea.innerHTML = chapter.speaker[i];
@@ -199,10 +198,9 @@ let dialogueHistoryBox = document.getElementById("dialogue-history-box");
 let settings = document.getElementById("settings");
 let settingsBox = document.getElementById("settings-box");
 let logButton = document.getElementById("log");
-let dialogueSpeed = 450;
-let txtChar = 0;
+// let dialogueSpeed = 450;
 let fontChange = document.getElementById("legible-font");
-let speedSlider = document.getElementById("text-speed");
+// let speedSlider = document.getElementById("text-speed");
 let lines = [];
 let names = [];
 let fullScript = [];
@@ -276,9 +274,9 @@ const ch3 = {
   speaker: names
 };
 
-speedSlider.addEventListener("input", function(){
-  dialogueSpeed = speedSlider.value;
-});
+// speedSlider.addEventListener("input", function(){
+//   dialogueSpeed = speedSlider.value;
+// });
 
 fontChange.addEventListener("change", function(){
   textArea.style.fontFamily = "Arial";
