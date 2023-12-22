@@ -1,8 +1,29 @@
+const ch1 = {
+  name: "ch1",
+  line : [],
+  speaker : []
+};
+
+const ch2 = {
+  name: "ch2",
+  line: [],
+  speaker: []
+};
+const ch3 = {
+  name: "ch3",
+  line: [],
+  speaker: []
+};
+
+var chapter = ch2;
+
+
+
+
 // functions //
 function lineChange(direction){
   if (direction == "forward"){
     i++;
-    textArea.innerHTML = "";
     speakerArea.innerHTML = chapter.speaker[i];
     textArea.innerHTML = chapter.line[i];
     // if (i < chapter.line.length){
@@ -14,8 +35,8 @@ function lineChange(direction){
   // If textArea[i] out of range, then player cannot advance // 
   if (i >= chapter.line.length){
     document.getElementById(direction).style.visibility = "hidden";
-    textArea.innerHTML = "No lines here!!";
-    speakerArea.innerHTML = "Narrator";
+    textArea.innerHTML = "End of Chapter!";
+    speakerArea.innerHTML = "";
   } 
   else { 
     // If textArea[i] in range, then player can advance //
@@ -24,14 +45,28 @@ function lineChange(direction){
 
   sprite_check();
 }
-// function textDisplay(){
-//   // Typewriter-like animation
-//   if (txtChar < chapter.line[i].length){
-//     textArea.innerHTML += chapter["line"][i].charAt(txtChar);
-//     txtChar++;
-//     setInterval(textDisplay, dialogueSpeed);
-//   }
-// }
+function loadText(currentChapter){
+  // fetch('ch1_script.txt')
+  // .then(response => response.text())
+  // .then(text => {
+  //   fullScript = (text.split("\n"));
+  //   debugText.innerHTML = fullScript;
+  for (let i = 0; i < fullScript.length; i++){
+    chapters[currentChapter].line.push(fullScript[i].split(":")[1]);
+    chapters[currentChapter].speaker.push(fullScript[i].split(":")[0]);
+        // lines.push(fullScript[i].split(":")[1]);
+        // names.push(fullScript[i].split(":")[0]);
+  }
+  
+  // });
+}
+// fetch(`${chapter.name}_script.txt`)
+//   .then(response => response.text())
+//   .then(text => {
+//     fullScript = (text.split("\n"));
+//     debugText.innerHTML = fullScript;
+//   });
+
 function confirmation_box_display(activator){
   if (activator == "home"){
     confirmationBox.style.top = "20%";
@@ -64,8 +99,7 @@ function confirmation_box_display(activator){
 function main_menu(){
   chapter = null;
   i = 0;
-  lines = [];
-  names = [];
+  // dialogueHistoryRemove();
   
   // GAME_SCENE is a list of all the game_scene elements
   // loop through each element in the list and apply the 
@@ -89,7 +123,19 @@ function main_menu(){
   });
   textArea.innerHTML = "";
 }
-function sprite_check(){
+// function dialogueHistoryRemove() {
+//   let children = dialogueHistoryBox.children;
+//   for (child of children){
+//     dialogueHistoryBox.removeChild(child)
+//     // if (child.classList.contains("new-dialogue")) {
+//     //   child.removeChild();
+//     // }else if (child.classList.contains("new-speaker")){
+//     //   dialogueHistoryBox.removeChild(child);
+//     // }
+//   }
+
+// }
+function sprite_check(){ 
   // Sprite changes
   if (i >= 2){
     RIGHT_SPRITE.src = "placeholders/sprites/koga/koga_munch.png";
@@ -106,12 +152,14 @@ function dialogue_history_add(){
     let speakerLine = document.createElement("h3");
     let speakerLineNode = document.createTextNode(chapter.speaker[i]);
     speakerLine.appendChild(speakerLineNode)
+    speakerLine.classList.add("new-speaker");
     dialogueHistoryBox.appendChild(speakerLine);
 
     // Add Dialogue to Box
     let logLine = document.createElement("p");
     let node = document.createTextNode(chapter.line[i]);
     logLine.appendChild(node);
+    logLine.classList.add("new-dialogue");
     dialogueHistoryBox.appendChild(logLine);
   }
 }
@@ -120,37 +168,45 @@ function loadChapter(selection){
   switch (selection) {
     case 1:
       chapter = ch1;
+      console.log("Chapter 1 Selected.");
       break;
     case 2:
       chapter = ch2;
+      console.log("Chapter 2 Selected.");
       break;
     case 3:
       chapter = ch3;
+      console.log("Chapter 3 Selected.");
       break;
   }
-  fetch('ch1_script.txt')
-  .then(response => response.text())
-  .then(text => {
-    fullScript = (text.split("\n"));
-    debugText.innerHTML = fullScript;
-    for (let i = 0; i < fullScript.length; i++){
-      lines.push(fullScript[i].split(":")[1]);
-      names.push(fullScript[i].split(":")[0]);
-    }
-    ch1.line = lines;
-    ch1.speaker = names;
-  });
+
+  
+
+
+  // loadText();
+  // fetch('ch1_script.txt')
+  // .then(response => response.text())
+  // .then(text => {
+  //   fullScript = (text.split("\n"));
+  //   debugText.innerHTML = fullScript;
+  //   for (let i = 0; i < fullScript.length; i++){
+  //     lines.push(fullScript[i].split(":")[1]);
+  //     names.push(fullScript[i].split(":")[0]);
+  //   }
+  //   chapter.line = lines;
+  //   chapter.speaker = names;
+  // });
   chapterSelectBox.style.opacity = "0%";
   // chapterSelectBox.addEventListener('transitionend', ()=>{
   chapterSelectBox.style.visibility = "hidden";
   forward.disabled = false;
   // });
+  
   textArea.innerHTML = chapter.line[i];
+  
   speakerArea.innerHTML = chapter.speaker[i];
   dialogueHistory.innerHTML = chapter.line[i];
   speakerHistory.innerHTML = chapter.speaker[i];
-  console.log(lines);
-  console.log(chapter.line);
   GAME_SCENE.forEach(element => {
     if (element == GAME_SCENE[1] || element == GAME_SCENE[6] || element == GAME_SCENE[7]|| element == GAME_SCENE[2] ){
       element.style.opacity = "100%";
@@ -179,11 +235,16 @@ function loadChapter(selection){
   // });
 
 }
+
+
+
+
+
+
 // Lists, Variables //
 
 let i = 0;
 let forward = document.getElementById("forward");
-let speaker = ["Tsumugi", "Tsukasa", "Koga", "Arashi", "Shu"];
 let speakerArea = document.getElementById("speaker");
 let speakerHistory = document.getElementById("speaker-history");
 let textArea = document.getElementById("script");
@@ -198,13 +259,14 @@ let dialogueHistoryBox = document.getElementById("dialogue-history-box");
 let settings = document.getElementById("settings");
 let settingsBox = document.getElementById("settings-box");
 let logButton = document.getElementById("log");
+
 // let dialogueSpeed = 450;
 let fontChange = document.getElementById("legible-font");
 // let speedSlider = document.getElementById("text-speed");
 let lines = [];
 let names = [];
 let fullScript = [];
-var chapter;
+
 const dialogueHistoryExit = document.getElementById("exit");
 dialogueHistory.innerHTML = [];
 const TOP_CG = document.getElementById("top");
@@ -249,30 +311,12 @@ let debugText = document.getElementById("debug-text");
 
 
 
-// async function loadText(){
-//   window.alert("Debugging is hard...");
-//   const response = await fetch("ch1_script.txt");
-//   const text = await response.text();
-//   debugText.innerHTML = "blah";
-// }
 
 // loadText();
 
 
 
-const ch1 = {
-  line : [],
-  speaker : []
-};
 
-const ch2 = {
-  line: lines,
-  speaker: names
-};
-const ch3 = {
-  line: lines,
-  speaker: names
-};
 
 // speedSlider.addEventListener("input", function(){
 //   dialogueSpeed = speedSlider.value;
@@ -343,3 +387,15 @@ ch3Box.addEventListener('click', function(){
   loadChapter(3);
 });
 
+let scripts = ["ch1_script.txt", "ch2_script.txt", "ch3_script.txt"];
+chapters = [ch1,ch2,ch3];
+
+scripts.forEach(element =>{
+  fetch(element)
+  .then(response => response.text())
+  .then(text => {
+    fullScript = (text.split("\n"));
+    debugText.innerHTML = fullScript;
+    loadText(scripts.indexOf(element));
+  });
+});
