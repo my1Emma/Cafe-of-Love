@@ -50,7 +50,6 @@ function loadText(currentChapter){
   // .then(response => response.text())
   // .then(text => {
   //   fullScript = (text.split("\n"));
-  //   debugText.innerHTML = fullScript;
   for (let i = 0; i < fullScript.length; i++){
     chapters[currentChapter].line.push(fullScript[i].split(":")[1]);
     chapters[currentChapter].speaker.push(fullScript[i].split(":")[0]);
@@ -286,7 +285,7 @@ const ch3Box = document.getElementById("chapter3-box");
 
 // debug //
 
-let debugText = document.getElementById("debug-text");
+// let debugText = document.getElementById("debug-text");
 
 //
 
@@ -395,7 +394,6 @@ scripts.forEach(element =>{
   .then(response => response.text())
   .then(text => {
     fullScript = (text.split("\n"));
-    debugText.innerHTML = fullScript;
     loadText(scripts.indexOf(element));
   });
 });
