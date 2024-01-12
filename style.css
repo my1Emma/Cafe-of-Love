@@ -162,7 +162,7 @@ span{
 
 /* Dialogue History */
 
-#dialogue-history-box{
+#dialogue-history-box, #settings-box{
     z-index: 6;
     background: rgba(8, 0, 52, .8);
     position: absolute;
@@ -182,7 +182,7 @@ span{
     overflow-y: auto;
     border-radius: 8px;
     visibility: hidden;
-    transition: overflow 2s;
+    /* transition: overflow 2s; */
     
 }
 
@@ -196,12 +196,12 @@ span{
     margin-bottom: -10px;
 }
 
-#exit, .exit{
+#dialogue-exit, .exit{
     position: sticky;
     top: 20%;
 }
 
-.exit-bg, #exit, .exit{
+.exit-bg, #dialogue-exit, .exit{
     display: flex;
     justify-content: center;
     max-width: 30px;
@@ -213,7 +213,7 @@ span{
     opacity: 70%;
     transition: opacity 1s;
 }
-.exit-bg:hover, #exit:hover{
+.exit-bg:hover, #dialogue-exit:hover{
     opacity: 100%;
 }
 .confirmation-button{

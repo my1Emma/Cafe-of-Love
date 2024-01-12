@@ -15,7 +15,7 @@ const ch3 = {
   speaker: []
 };
 
-var chapter = ch2;
+// var chapter = ch2;
 
 
 
@@ -159,6 +159,7 @@ function dialogue_history_add(){
     let node = document.createTextNode(chapter.line[i]);
     logLine.appendChild(node);
     logLine.classList.add("new-dialogue");
+    logLine.style.fontFamily = textArea.style.fontFamily;
     dialogueHistoryBox.appendChild(logLine);
   }
 }
@@ -258,6 +259,7 @@ let dialogueHistoryBox = document.getElementById("dialogue-history-box");
 let settings = document.getElementById("settings");
 let settingsBox = document.getElementById("settings-box");
 let logButton = document.getElementById("log");
+const exampleText = document.getElementById("example-text");
 
 // let dialogueSpeed = 450;
 let fontChange = document.getElementById("legible-font");
@@ -266,7 +268,8 @@ let lines = [];
 let names = [];
 let fullScript = [];
 
-const dialogueHistoryExit = document.getElementById("exit");
+const dialogueHistoryExit = document.getElementById("dialogue-exit");
+const settingsExit = document.getElementById("settings-exit");
 dialogueHistory.innerHTML = [];
 const TOP_CG = document.getElementById("top");
 const BOTTOM_CG = document.getElementById("bottom");
@@ -278,7 +281,6 @@ const mainMenuButtons = document.querySelectorAll(".main_menu_button");
 const chapterSelect = document.getElementById("chapter_select");
 const GAME_SCENE = document.querySelectorAll(".game_scene");
 const chapterSelectBox = document.getElementById('chapter-box');
-const music = document.getElementById("audio");
 const ch1Box = document.getElementById("chapter1-box");
 const ch2Box = document.getElementById("chapter2-box");
 const ch3Box = document.getElementById("chapter3-box");
@@ -322,8 +324,21 @@ const ch3Box = document.getElementById("chapter3-box");
 // });
 
 fontChange.addEventListener("change", function(){
-  textArea.style.fontFamily = "Arial";
-  speakerArea.style.fontFamily = "Arial";
+  if (fontChange.checked){
+    document.querySelectorAll("p").forEach (element =>{
+      element.style.fontFamily = "Times New Roman";
+    });
+    // textArea.style.fontFamily = "Arial";
+    // speakerArea.style.fontFamily = "Arial";
+  } else{
+    document.querySelectorAll("p").forEach (element =>{
+      element.style.fontFamily = "Caveat";
+    });
+    // textArea.style.fontFamily = "Caveat";
+    // speakerArea.style.fontFamily = "Clicker script";
+  }
+
+  
 });
 forward.addEventListener('click', function(){
   lineChange("forward");
@@ -340,6 +355,10 @@ confirmationButtonYes.addEventListener('click', main_menu);
 
 dialogueHistoryExit.addEventListener('click', function(){
   dialogueHistoryBox.style.visibility = "hidden";
+});
+
+settingsExit.addEventListener('click', function(){
+  settingsBox.style.visibility = "hidden";
 });
 
 logButton.addEventListener('click', function(){

@@ -50,7 +50,7 @@
         </section>
         <section id="dialogue-history-box" class = game_scene> 
             <div class= "exit-bg">
-                <button id="exit"><img src="icons/square-rounded-x-filled.svg"></button>
+                <button id="dialogue-exit"><img src="icons/square-rounded-x-filled.svg"></button>
             </div>
             <h2>Dialogue History</h2>
             <hr>
@@ -58,7 +58,9 @@
             <p id="dialogue-history"></p>
         </section>
         <section id = "settings-box" class = game_scene>
-            <button class = "exit"><img src= "icons/square-rounded-x-filled.svg"></button>
+            <div class= "exit-bg">
+                <button class = "exit" id= "settings-exit"><img src= "icons/square-rounded-x-filled.svg"></button>
+            </div>
             <!-- <div class = "speed-adjust">
                 <h3>Text</h3>
                 <label for = "text-speed">Text Speed
@@ -71,7 +73,7 @@
                 <input type="checkbox" id = "legible-font">
                 </label>
             </div>
-            <p>Text will appear as such!</p>
+            <p id = "example-text">Text will appear as such!</p>
              <hr>
             <div id = "audio-adjust">
                 <h3>Audio Control</h3>
@@ -97,13 +99,9 @@
             <p id="script"></p><button id="forward">>>></button>
         </div>
     </section>
-    <audio controls id = "audio">
+    <audio controls id = "play">
         <source src="music/Smooth Lovin.mp3" type="audio/mp3">
     </audio>
-    <!-- <div id = "debug">
-        <h3>Debug...</h3>
-        <p id= "debug-text">Hiiii</p>
-    </div> -->
 <script src="script.js"></script>
 </body>
 
