@@ -1,9 +1,9 @@
+// Chapter Objects // 
 const ch1 = {
   name: "ch1",
   line : [],
   speaker : []
 };
-
 const ch2 = {
   name: "ch2",
   line: [],
@@ -15,10 +15,6 @@ const ch3 = {
   speaker: []
 };
 
-// var chapter = ch2;
-
-
-
 
 // functions //
 function lineChange(direction){
@@ -26,10 +22,6 @@ function lineChange(direction){
     i++;
     speakerArea.innerHTML = chapter.speaker[i];
     textArea.innerHTML = chapter.line[i];
-    // if (i < chapter.line.length){
-    //   textDisplay();
-    // }
-    
     dialogue_history_add();
   } 
   // If textArea[i] out of range, then player cannot advance // 
@@ -46,26 +38,12 @@ function lineChange(direction){
   sprite_check();
 }
 function loadText(currentChapter){
-  // fetch('ch1_script.txt')
-  // .then(response => response.text())
-  // .then(text => {
-  //   fullScript = (text.split("\n"));
   for (let i = 0; i < fullScript.length; i++){
     chapters[currentChapter].line.push(fullScript[i].split(":")[1]);
     chapters[currentChapter].speaker.push(fullScript[i].split(":")[0]);
-        // lines.push(fullScript[i].split(":")[1]);
-        // names.push(fullScript[i].split(":")[0]);
+ 
   }
-  
-  // });
 }
-// fetch(`${chapter.name}_script.txt`)
-//   .then(response => response.text())
-//   .then(text => {
-//     fullScript = (text.split("\n"));
-//     debugText.innerHTML = fullScript;
-//   });
-
 function confirmation_box_display(activator){
   if (activator == "home"){
     confirmationBox.style.top = "20%";
@@ -98,7 +76,6 @@ function confirmation_box_display(activator){
 function main_menu(){
   chapter = null;
   i = 0;
-  // dialogueHistoryRemove();
   
   // GAME_SCENE is a list of all the game_scene elements
   // loop through each element in the list and apply the 
@@ -111,7 +88,6 @@ function main_menu(){
     thing.style.filter = "none";
     // });
   })
-  // gameArea.style.background = "url('placeholders/card_still_full1_3296_evolution.webp') center/cover";
   confirmationBox.style.visibility = "hidden";
   mainMenuBox.style.width = "20%";
   // mainMenuBox.addEventListener('transitionend', () =>{
@@ -122,18 +98,6 @@ function main_menu(){
   });
   textArea.innerHTML = "";
 }
-// function dialogueHistoryRemove() {
-//   let children = dialogueHistoryBox.children;
-//   for (child of children){
-//     dialogueHistoryBox.removeChild(child)
-//     // if (child.classList.contains("new-dialogue")) {
-//     //   child.removeChild();
-//     // }else if (child.classList.contains("new-speaker")){
-//     //   dialogueHistoryBox.removeChild(child);
-//     // }
-//   }
-
-// }
 function sprite_check(){ 
   // Sprite changes
   if (i >= 2){
@@ -180,27 +144,10 @@ function loadChapter(selection){
       break;
   }
 
-  
 
-
-  // loadText();
-  // fetch('ch1_script.txt')
-  // .then(response => response.text())
-  // .then(text => {
-  //   fullScript = (text.split("\n"));
-  //   debugText.innerHTML = fullScript;
-  //   for (let i = 0; i < fullScript.length; i++){
-  //     lines.push(fullScript[i].split(":")[1]);
-  //     names.push(fullScript[i].split(":")[0]);
-  //   }
-  //   chapter.line = lines;
-  //   chapter.speaker = names;
-  // });
   chapterSelectBox.style.opacity = "0%";
-  // chapterSelectBox.addEventListener('transitionend', ()=>{
   chapterSelectBox.style.visibility = "hidden";
   forward.disabled = false;
-  // });
   
   textArea.innerHTML = chapter.line[i];
   
@@ -215,31 +162,10 @@ function loadChapter(selection){
     element.style.visibility = "visible";
     element.style.opacity = "100%";
     forward.style.visibility = "visible";
-    
-    // element.addEventListener('transitionend', ()=>{
-    //   element.style.opacity = "100%";
-    // });
   });
   logButton.disabled = false;
-  // textDisplay();
-  // });
-  // textArea.innerHTML = chapter.line[i];
-  // speakerArea.innerHTML = chapter.speaker[i];
-  // GAME_SCENE.forEach(element => {
-  //   element.style.visibility = "visible";
-  //   element.style.opacity = "100%";
-    
-  //   // element.addEventListener('transitionend', ()=>{
-  //   //   element.style.opacity = "100%";
-  //   // });
-  // });
 
 }
-
-
-
-
-
 
 // Lists, Variables //
 
@@ -260,10 +186,7 @@ let settings = document.getElementById("settings");
 let settingsBox = document.getElementById("settings-box");
 let logButton = document.getElementById("log");
 const exampleText = document.getElementById("example-text");
-
-// let dialogueSpeed = 450;
 let fontChange = document.getElementById("legible-font");
-// let speedSlider = document.getElementById("text-speed");
 let lines = [];
 let names = [];
 let fullScript = [];
@@ -285,57 +208,17 @@ const ch1Box = document.getElementById("chapter1-box");
 const ch2Box = document.getElementById("chapter2-box");
 const ch3Box = document.getElementById("chapter3-box");
 
-// debug //
-
-// let debugText = document.getElementById("debug-text");
-
-//
-
-// function textRead(){
-//   fetch("ch1_script.txt")
-//     .then(response => response.text())
-//     .then(text => {
-//       let fullScript = text.split("\n");
-//       let lines = [];
-//       let names = [];
-//       // for (let i = 0; i < fullScript.length; i++){
-//       //   if (i % 2 == 0){
-//       //     lines.push(fullScript[i]);
-//       //   }else{
-//       //     names.push(fullScript[i]);
-//       //   }
-//       // }
-//       lines.push("HIII");
-//       return lines;
-//     })
-// }
-
-
-
-
-// loadText();
-
-
-
-
-
-// speedSlider.addEventListener("input", function(){
-//   dialogueSpeed = speedSlider.value;
-// });
 
 fontChange.addEventListener("change", function(){
   if (fontChange.checked){
     document.querySelectorAll("p").forEach (element =>{
       element.style.fontFamily = "Times New Roman";
     });
-    // textArea.style.fontFamily = "Arial";
-    // speakerArea.style.fontFamily = "Arial";
+
   } else{
     document.querySelectorAll("p").forEach (element =>{
       element.style.fontFamily = "Caveat";
     });
-    // textArea.style.fontFamily = "Caveat";
-    // speakerArea.style.fontFamily = "Clicker script";
   }
 
   
